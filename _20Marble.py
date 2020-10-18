@@ -150,6 +150,7 @@ d=0
 e=0
 f=0
 g=0
+h=0
 a2=0
 b2=0
 c2=0
@@ -157,11 +158,13 @@ d2=0
 e2=0
 f2=0
 g2=0
+h2=0
 
 
 #플레이어가 온적이 있는지 없는지 확인
 #1이 왔다갔으면 1 2가 왔다 갔으면 2
 visitmap=[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+visitmap2=[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 #주사위 구현
 dicebtn=Object("image/dicebtn.png")
@@ -170,7 +173,11 @@ dicebtn.show()
 move=0
 timer=Timer(1)
 showTimer(timer)
+
+endtimer=Timer(3)
 def on_dicebtn(x,y,action):
+
+
     move=random.randrange(1,7)
     showMessage(str(move)+"이 나왔다!")
     temp=gamemap.index(1)
@@ -181,37 +188,83 @@ def on_dicebtn(x,y,action):
             p1map[gamemap.index(1)+move-28].show()
             p2map[gamemap.index(1)+move-28].hide()
 
+
     else:
         gamemap[gamemap.index(1)+move]=1
         visitmap[gamemap.index(1)+move]=1  
         if p1map[gamemap.index(1)+move]!=0:
             p1map[gamemap.index(1)+move].show()
             p2map[gamemap.index(1)+move].hide()
+
+    global a,b,c,d,e,f,g,h
+
+    if visitmap[1]+visitmap[2]+visitmap[3]==3:
+        a=1
+    if visitmap[4]+visitmap[5]+visitmap[6]==3:
+        b=1
+    if visitmap[8]+visitmap[9]+visitmap[10]==3:
+        c=1
+    if visitmap[11]+visitmap[12]+visitmap[13]==3:
+        d=1
+    if visitmap[15]+visitmap[16]+visitmap[17]==3:
+        e=1
+    if visitmap[18]+visitmap[19]+visitmap[20]==3:
+        f=1
+    if visitmap[22]+visitmap[23]+visitmap[24]==3:
+        g=1
+    if visitmap[25]+visitmap[26]+visitmap[27]==3:
+        h=1
+    if a+b+c+d+e+f+g+h==3:
+        showMessage("트리플 독점, 승리!")
+        endtimer.start()
     gamemap[temp]=0
     #상대방
     timer.start()
 dicebtn.onMouseAction=on_dicebtn
 
 def timer_onTimeout():
+    global a2,b2,c2,d2,e2,f2,g2,h2
     move=random.randrange(1,7)
     showMessage("상대는"+str(move)+"이 나왔다!")
     temp=gamemap2.index(1)
     if gamemap2.index(1)+move>27:
         gamemap2[gamemap2.index(1)+move-28]=1
-        visitmap[gamemap2.index(1)+move-28]=2
+        visitmap2[gamemap2.index(1)+move-28]=1
         if p2map[gamemap2.index(1)+move-28]!=0:
             p2map[gamemap2.index(1)+move-28].show()
             p1map[gamemap2.index(1)+move-28].hide()
     else:
         gamemap2[gamemap2.index(1)+move]=1
-        visitmap[gamemap2.index(1)+move]=2  
+        visitmap2[gamemap2.index(1)+move]=1
         if p2map[gamemap2.index(1)+move]!=0:
             p2map[gamemap2.index(1)+move].show()
             p1map[gamemap2.index(1)+move].hide()
+    if visitmap2[1]+visitmap2[2]+visitmap2[3]==3:
+        a2=1
+    if visitmap2[4]+visitmap2[5]+visitmap2[6]==3:
+        b2=1
+    if visitmap2[8]+visitmap2[9]+visitmap2[10]==3:
+        c2=1
+    if visitmap2[11]+visitmap2[12]+visitmap2[13]==3:
+        d2=1
+    if visitmap2[15]+visitmap2[16]+visitmap2[17]==3:
+        e2=1
+    if visitmap2[18]+visitmap2[19]+visitmap2[20]==3:
+        f2=1
+    if visitmap2[22]+visitmap2[23]+visitmap2[24]==3:
+        g2=1
+    if visitmap2[25]+visitmap2[26]+visitmap2[27]==3:
+        h2=1
+    if a2+b2+c2+d2+e2+f2+g2+h2==3:
+        showMessage("상대의 승리ㅜ")
+        endtimer.start()
     gamemap2[temp]=0
     timer.set(1)
 timer.onTimeout=timer_onTimeout
 
+def on_Endtimeout():
+    endGame()
+endtimer.onTimeout=on_Endtimeout
 startGame(startscene)
 
 
