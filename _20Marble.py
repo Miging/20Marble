@@ -238,8 +238,8 @@ def on_dicebtn(x,y,action):
         h=1
     else:
         a=b=c=d=e=f=g=h=0
-    if a+b+c+d+e+f+g+h==3:
-        showMessage("트리플 독점, 승리!")
+    if a+b+c+d+e+f+g+h==1:
+        showMessage("독점, 승리!")
         endtimer.start()
     gamemap[temp]=0
     #상대방
@@ -300,7 +300,7 @@ def timer_onTimeout():
         h2=1
     else:
         a2=b2=c2=d2=e2=f2=g2=h2=0
-    if a2+b2+c2+d2+e2+f2+g2+h2==3:
+    if a2+b2+c2+d2+e2+f2+g2+h2==1:
         showMessage("상대의 승리ㅜ")
         endtimer.start()
     gamemap2[temp]=0
