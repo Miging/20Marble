@@ -182,31 +182,35 @@ def on_dicebtn(x,y,action):
     showMessage(str(move)+"이 나왔다!")
     temp=gamemap.index(1)
     if gamemap.index(1)+move>27:
-        gamemap[gamemap.index(1)+move-28]=1
-        visitmap[gamemap.index(1)+move-28]=1
-        visitmap2[gamemap.index(1)+move-28]=0
-        if p1map[gamemap.index(1)+move-28]!=0:
-            p1map[gamemap.index(1)+move-28].show()
-            p2map[gamemap.index(1)+move-28].hide()
+        des=gamemap.index(1)+move-28
+        gamemap[des]=1
+        visitmap[des]=1
+        visitmap2[des]=0
+        if p1map[des]!=0:
+            p1map[des].show()
+            p2map[des].hide()
         else:
             n=random.randrange(0,28)
-            while n==0 or n==7 or n==14 or n==21:
+            while n==0 or n==7 or n==14 or n==21 or visitmap[n]==1:
                 n=random.randrange(0,28)
             visitmap[n]=1
             visitmap2[n]=0
             p1map[n].show()
             p2map[n].hide()
 
+
+
     else:
-        gamemap[gamemap.index(1)+move]=1
-        visitmap[gamemap.index(1)+move]=1 
-        visitmap2[gamemap.index(1)+move]=0
-        if p1map[gamemap.index(1)+move]!=0:
-            p1map[gamemap.index(1)+move].show()
-            p2map[gamemap.index(1)+move].hide()
+        des=gamemap.index(1)+move
+        gamemap[des]=1
+        visitmap[des]=1 
+        visitmap2[des]=0
+        if p1map[des]!=0:
+            p1map[des].show()
+            p2map[des].hide()
         else:
             n=random.randrange(0,28)
-            while n==0 or n==7 or n==14 or n==21:
+            while n==0 or n==7 or n==14 or n==21 or visitmap[n]==1:
                 n=random.randrange(0,28)
             visitmap[n]=1
             visitmap2[n]=0
@@ -256,12 +260,12 @@ def timer_onTimeout():
             p1map[gamemap2.index(1)+move-28].hide()
         else:
             n=random.randrange(0,28)
-            while n==0 or n==7 or n==14 or n==21:
+            while n==0 or n==7 or n==14 or n==21 or visitmap2[n]==1:
                 n=random.randrange(0,28)
-            visitmap[n]=1
-            visitmap2[n]=0
-            p1map[n].show()
-            p2map[n].hide()
+            visitmap[n]=0
+            visitmap2[n]=1
+            p2map[n].show()
+            p1map[n].hide()
     else:
         gamemap2[gamemap2.index(1)+move]=1
         visitmap2[gamemap2.index(1)+move]=1
@@ -271,12 +275,12 @@ def timer_onTimeout():
             p1map[gamemap2.index(1)+move].hide()
         else:
             n=random.randrange(0,28)
-            while n==0 or n==7 or n==14 or n==21:
+            while n==0 or n==7 or n==14 or n==21 or visitmap2[n]==1:
                 n=random.randrange(0,28)
-            visitmap[n]=1
-            visitmap2[n]=0
-            p1map[n].show()
-            p2map[n].hide()
+            visitmap[n]=0
+            visitmap2[n]=1
+            p2map[n].show()
+            p1map[n].hide()
 
     if visitmap2[1]+visitmap2[2]+visitmap2[3]==3:
         a2=1
@@ -307,6 +311,63 @@ def on_Endtimeout():
     endGame()
 endtimer.onTimeout=on_Endtimeout
 startGame(startscene)
+'''
+        if p1st==0:
+
+        if p1st==1:
+
+        if p1st==2:
+
+        if p1st==3:
+
+        if p1st==4:
+
+        if p1st==5:
+
+        if p1st==6:
+
+        if p1st==7:
+
+        if p1st==8:
+
+        if p1st==9:
+
+        if p1st==10:
+
+        if p1st==11:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+
+        if p1st==0:
+'''
 
 
 
