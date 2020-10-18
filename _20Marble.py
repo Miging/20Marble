@@ -184,36 +184,56 @@ def on_dicebtn(x,y,action):
     if gamemap.index(1)+move>27:
         gamemap[gamemap.index(1)+move-28]=1
         visitmap[gamemap.index(1)+move-28]=1
+        visitmap2[gamemap.index(1)+move-28]=0
         if p1map[gamemap.index(1)+move-28]!=0:
             p1map[gamemap.index(1)+move-28].show()
             p2map[gamemap.index(1)+move-28].hide()
-
+        else:
+            n=random.randrange(0,28)
+            while n==0 or n==7 or n==14 or n==21:
+                n=random.randrange(0,28)
+            visitmap[n]=1
+            visitmap2[n]=0
+            p1map[n].show()
+            p2map[n].hide()
 
     else:
         gamemap[gamemap.index(1)+move]=1
-        visitmap[gamemap.index(1)+move]=1  
+        visitmap[gamemap.index(1)+move]=1 
+        visitmap2[gamemap.index(1)+move]=0
         if p1map[gamemap.index(1)+move]!=0:
             p1map[gamemap.index(1)+move].show()
             p2map[gamemap.index(1)+move].hide()
+        else:
+            n=random.randrange(0,28)
+            while n==0 or n==7 or n==14 or n==21:
+                n=random.randrange(0,28)
+            visitmap[n]=1
+            visitmap2[n]=0
+            p1map[n].show()
+            p2map[n].hide()
+
 
     global a,b,c,d,e,f,g,h
 
     if visitmap[1]+visitmap[2]+visitmap[3]==3:
         a=1
-    if visitmap[4]+visitmap[5]+visitmap[6]==3:
+    elif visitmap[4]+visitmap[5]+visitmap[6]==3:
         b=1
-    if visitmap[8]+visitmap[9]+visitmap[10]==3:
+    elif visitmap[8]+visitmap[9]+visitmap[10]==3:
         c=1
-    if visitmap[11]+visitmap[12]+visitmap[13]==3:
+    elif visitmap[11]+visitmap[12]+visitmap[13]==3:
         d=1
-    if visitmap[15]+visitmap[16]+visitmap[17]==3:
+    elif visitmap[15]+visitmap[16]+visitmap[17]==3:
         e=1
-    if visitmap[18]+visitmap[19]+visitmap[20]==3:
+    elif visitmap[18]+visitmap[19]+visitmap[20]==3:
         f=1
-    if visitmap[22]+visitmap[23]+visitmap[24]==3:
+    elif visitmap[22]+visitmap[23]+visitmap[24]==3:
         g=1
-    if visitmap[25]+visitmap[26]+visitmap[27]==3:
+    elif visitmap[25]+visitmap[26]+visitmap[27]==3:
         h=1
+    else:
+        a=b=c=d=e=f=g=h=0
     if a+b+c+d+e+f+g+h==3:
         showMessage("트리플 독점, 승리!")
         endtimer.start()
@@ -230,31 +250,52 @@ def timer_onTimeout():
     if gamemap2.index(1)+move>27:
         gamemap2[gamemap2.index(1)+move-28]=1
         visitmap2[gamemap2.index(1)+move-28]=1
+        visitmap[gamemap2.index(1)+move-28]=0
         if p2map[gamemap2.index(1)+move-28]!=0:
             p2map[gamemap2.index(1)+move-28].show()
             p1map[gamemap2.index(1)+move-28].hide()
+        else:
+            n=random.randrange(0,28)
+            while n==0 or n==7 or n==14 or n==21:
+                n=random.randrange(0,28)
+            visitmap[n]=1
+            visitmap2[n]=0
+            p1map[n].show()
+            p2map[n].hide()
     else:
         gamemap2[gamemap2.index(1)+move]=1
         visitmap2[gamemap2.index(1)+move]=1
+        visitmap[gamemap2.index(1)+move]=0
         if p2map[gamemap2.index(1)+move]!=0:
             p2map[gamemap2.index(1)+move].show()
             p1map[gamemap2.index(1)+move].hide()
+        else:
+            n=random.randrange(0,28)
+            while n==0 or n==7 or n==14 or n==21:
+                n=random.randrange(0,28)
+            visitmap[n]=1
+            visitmap2[n]=0
+            p1map[n].show()
+            p2map[n].hide()
+
     if visitmap2[1]+visitmap2[2]+visitmap2[3]==3:
         a2=1
-    if visitmap2[4]+visitmap2[5]+visitmap2[6]==3:
+    elif visitmap2[4]+visitmap2[5]+visitmap2[6]==3:
         b2=1
-    if visitmap2[8]+visitmap2[9]+visitmap2[10]==3:
+    elif visitmap2[8]+visitmap2[9]+visitmap2[10]==3:
         c2=1
-    if visitmap2[11]+visitmap2[12]+visitmap2[13]==3:
+    elif visitmap2[11]+visitmap2[12]+visitmap2[13]==3:
         d2=1
-    if visitmap2[15]+visitmap2[16]+visitmap2[17]==3:
+    elif visitmap2[15]+visitmap2[16]+visitmap2[17]==3:
         e2=1
-    if visitmap2[18]+visitmap2[19]+visitmap2[20]==3:
+    elif visitmap2[18]+visitmap2[19]+visitmap2[20]==3:
         f2=1
-    if visitmap2[22]+visitmap2[23]+visitmap2[24]==3:
+    elif visitmap2[22]+visitmap2[23]+visitmap2[24]==3:
         g2=1
-    if visitmap2[25]+visitmap2[26]+visitmap2[27]==3:
+    elif visitmap2[25]+visitmap2[26]+visitmap2[27]==3:
         h2=1
+    else:
+        a2=b2=c2=d2=e2=f2=g2=h2=0
     if a2+b2+c2+d2+e2+f2+g2+h2==3:
         showMessage("상대의 승리ㅜ")
         endtimer.start()
