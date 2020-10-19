@@ -117,12 +117,12 @@ k24=Object("image/k24.png")
 k24.locate(mainscene,160,0)
 
 player1=Object("image/player1.png")
-player1.locate(mainscene,0,50)
+player1.locate(mainscene,0,0)
 player1.setScale(0.3)
 player1.show()
 
 player2=Object("image/player2.png")
-player2.locate(mainscene,70,50)
+player2.locate(mainscene,70,0)
 player2.setScale(0.3)
 player2.show()
 
@@ -197,6 +197,14 @@ def on_dicebtn(x,y,action):
             visitmap2[n]=0
             p1map[n].show()
             p2map[n].hide()
+        if des>=0 and des<=6:
+            player1.locate(mainscene,0,des*90)
+        elif des>=7 and des<=13:
+            player1.locate(mainscene,0+(des-7)*160,630)
+        elif des>=14 and des<=20:
+            player1.locate(mainscene,1160,630-(des-14)*90)
+        elif des>=21 and des<=27:
+            player1.locate(mainscene,1160-(des-21)*160,0)
 
 
 
@@ -216,6 +224,14 @@ def on_dicebtn(x,y,action):
             visitmap2[n]=0
             p1map[n].show()
             p2map[n].hide()
+        if des>=0 and des<=6:
+            player1.locate(mainscene,0,des*90)
+        elif des>=7 and des<=13:
+            player1.locate(mainscene,0+(des-7)*160,630)
+        elif des>=14 and des<=20:
+            player1.locate(mainscene,1160,630-(des-14)*90)
+        elif des>=21 and des<=27:
+            player1.locate(mainscene,1160-(des-21)*160,50)
 
 
     global a,b,c,d,e,f,g,h
@@ -252,12 +268,13 @@ def timer_onTimeout():
     showMessage("상대는"+str(move)+"이 나왔다!")
     temp=gamemap2.index(1)
     if gamemap2.index(1)+move>27:
-        gamemap2[gamemap2.index(1)+move-28]=1
-        visitmap2[gamemap2.index(1)+move-28]=1
-        visitmap[gamemap2.index(1)+move-28]=0
-        if p2map[gamemap2.index(1)+move-28]!=0:
-            p2map[gamemap2.index(1)+move-28].show()
-            p1map[gamemap2.index(1)+move-28].hide()
+        des=gamemap2.index(1)+move-28
+        gamemap2[des]=1
+        visitmap2[des]=1
+        visitmap[des]=0
+        if p2map[des]!=0:
+            p2map[des].show()
+            p1map[des].hide()
         else:
             n=random.randrange(0,28)
             while n==0 or n==7 or n==14 or n==21 or visitmap2[n]==1:
@@ -266,13 +283,22 @@ def timer_onTimeout():
             visitmap2[n]=1
             p2map[n].show()
             p1map[n].hide()
+        if des>=0 and des<=6:
+            player2.locate(mainscene,70,des*90)
+        elif des>=7 and des<=13:
+            player2.locate(mainscene,70+(des-7)*160,630)
+        elif des>=14 and des<=20:
+            player2.locate(mainscene,1230,630-(des-14)*90)
+        elif des>=21 and des<=27:
+            player2.locate(mainscene,1230-(des-21)*160,0)
     else:
-        gamemap2[gamemap2.index(1)+move]=1
-        visitmap2[gamemap2.index(1)+move]=1
-        visitmap[gamemap2.index(1)+move]=0
-        if p2map[gamemap2.index(1)+move]!=0:
-            p2map[gamemap2.index(1)+move].show()
-            p1map[gamemap2.index(1)+move].hide()
+        des=gamemap2.index(1)+move
+        gamemap2[des]=1
+        visitmap2[des]=1
+        visitmap[des]=0
+        if p2map[des]!=0:
+            p2map[des].show()
+            p1map[des].hide()
         else:
             n=random.randrange(0,28)
             while n==0 or n==7 or n==14 or n==21 or visitmap2[n]==1:
@@ -281,6 +307,14 @@ def timer_onTimeout():
             visitmap2[n]=1
             p2map[n].show()
             p1map[n].hide()
+        if des>=0 and des<=6:
+            player2.locate(mainscene,70,des*90)
+        elif des>=7 and des<=13:
+            player2.locate(mainscene,70+(des-7)*160,630)
+        elif des>=14 and des<=20:
+            player2.locate(mainscene,1230,630-(des-14)*90)
+        elif des>=21 and des<=27:
+            player2.locate(mainscene,1230-(des-21)*160,0)
 
     if visitmap2[1]+visitmap2[2]+visitmap2[3]==3:
         a2=1
@@ -368,7 +402,6 @@ startGame(startscene)
 
         if p1st==0:
 '''
-
 
 
 
